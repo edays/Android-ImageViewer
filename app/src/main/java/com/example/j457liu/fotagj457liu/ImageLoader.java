@@ -5,15 +5,16 @@ import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.ImageView;
+
 import java.io.InputStream;
 
+// Async load bitmap to imageView class
 public class ImageLoader extends AsyncTask<String, Void, Bitmap> {
     ImageView image;
 
     public ImageLoader(ImageView image) {
         this.image = image;
     }
-
 
     protected Bitmap doInBackground(String... urls) {
         String url = urls[0];
@@ -31,7 +32,7 @@ public class ImageLoader extends AsyncTask<String, Void, Bitmap> {
         return bmap;
     }
 
-    protected void onPostExecute (Bitmap result) {
+    protected void onPostExecute(Bitmap result) {
         image.setImageBitmap(result);
     }
 }

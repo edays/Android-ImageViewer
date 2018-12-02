@@ -9,36 +9,56 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 
+// Content view class for full screen
+// @Note: may implement Observer for new features
 public class ContentViewFullScreen extends RelativeLayout {
     private Model model;
-    ImageView image;
-    RatingBar rb;
+    private ImageView image;
+    private RatingBar rb;
+    private String url;
+    private float rate;
 
-    public ContentViewFullScreen(final Context context, Model m, final String url) {
+    /**
+     * Constructor
+     *
+     * @param context    Context
+     * @param m          Model
+     * @param urlAddress Url address
+     * @param rating     Rating used to set the rating bar
+     */
+    public ContentViewFullScreen(Context context, Model m, String urlAddress, float rating) {
         super(context);
-        model = m;
+        this.model = m;
+        this.rate = rating;
+        this.url = urlAddress;
 
-        // Get the XML view description and "inflate" it into the display (like rendering)
+        // Get the XML view description and "inflate" it into the display
         View.inflate(context, R.layout.image_rating_fullscreen, this);
 
+        // Set up image view
         image = (ImageView) findViewById(R.id.imageFullscreen);
-        new ImageLoader(image).execute(url);    // load image
-        image.setOnClickListener(new OnClickListener() {
+        new ImageLoader(image).execute(url);   // async load bitmap from url to image
+        image.setOnClickListener(new OnClickListener() {  // listener
             @Override
             public void onClick(View v) {
-                // shift to full screen
-                Intent myIntent = new Intent(context, MainActivity.class);
-                context.startActivity(myIntent);
-                ((Activity) context).finish();
+                // send intent to MainActivity.class
+                Context cont = getContext();
+                Intent myIntent = new Intent(cont, MainActivity.class);
+                cont.startActivity(myIntent);
+                ((Activity) cont).finish();
             }
         });
 
+        // Set up rating bar
         rb = (RatingBar) findViewById(R.id.ratingFullscreen);
-        rb.setRating(model.getRatingByUrl(url));
+        rb.setRating(rate);
         rb.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
-            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+            public void onRatingChanged(RatingBar ratingBar,
+                                        float rating, boolean fromUser) {
+                // Update rating in model
                 model.setImageRatingByUrl(url, rating);
+                model.initObservers();
             }
         });
     }
