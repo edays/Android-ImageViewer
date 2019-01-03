@@ -1,35 +1,21 @@
-# Fotag
-# JiayiLiu
-# j457Liu
-# 20559609
+ImageViewer 1.0
 
-Thank you for using Fotag, a image viewing tool combines loading, rating and filtering images
-
-Important Features:
-1. AI Mode.
-Fotag will learn to auto sort pictures when user uses filter. 
-Higher rating images will begin showing in front of the lower rating images.
-This algorithm is in version 1.
-
-2. Custome theme UI
-Future plan: add UI selectors. User will be able to design their own UI.
+Thank you for using ImageViewer 1.0, an image viewing tool integrating loading, rating and filtering.
 
 Instructions:
 
-1. Open the navigation bar, press "Load" to load image from pre-set url. All urls pre-saved
-in xml for easy changes. Images are NOT pre-saved on the stack. Therefore, if url source 
-on the remote server changes while user is using Fotag, the image will change upon next "Load".
+1. Open the navigation bar. Press "Load" to load image from pre-set url. All urls are pre-saved
+in xml for easy changes(Copyright of University of Waterloo). Images are NOT pre-saved on the stack. Therefore, if url source 
+on the remote server changes, the image will change upon next "Load".
 
-2. Open the navigation bar, press "Clear" to clear all images and ratings.
-Note: The ratings are also cleared after clearing images.
+2. Open the navigation bar. Press "Clear" to clear all images and ratings.
+Note: The ratings are also cleared.
 
-3. Filter: Show All - Rating 0-5
+3. Open the navigation bar. Select filter level. 
+           Show All - Rating 0-5
            Favorite - Rating 5
 
-4. Press the image will open a image in fullscreen.
-
-All requirements met in:
-"https://www.student.cs.uwaterloo.ca/~cs349/f18/assignments/a4.html"
+4. Press an image to view it in fullscreen.
 
 License:
 All images are from "https://www.student.cs.uwaterloo.ca/~cs349/f18/assignments/images/" 
